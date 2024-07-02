@@ -51,6 +51,15 @@ public class AuthController {
         String mobile = user.getMobile();
         String role = user.getRole();
 
+        System.out.println(password+"-------"+password);
+
+        if ( isBlank(email)|| isBlank(password) || isBlank(role) ) {
+            AuthResponse authResponse = new AuthResponse();
+            authResponse.setMessage("Please enter all mandatory fields");
+            authResponse.setStatus(false);
+            return new ResponseEntity<AuthResponse>(authResponse, HttpStatus.OK);
+        }
+
         User isEmailExist = userRepository.findByEmail(email);
         if (isEmailExist != null) {
             AuthResponse authResponse = new AuthResponse();
@@ -79,6 +88,17 @@ public class AuthController {
         return new ResponseEntity<AuthResponse>(authResponse, HttpStatus.OK);
 
     }
+    public static boolean isBlank(String str) {
+        if (str != null ) {
+            if(str.trim().isEmpty()){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        return true;
+    }
     public ResponseEntity<AuthResponse> createUserFallback(User user, Throwable throwable) {
         // Handle the fallback logic here
         // You can return a default response or log the error
@@ -95,6 +115,13 @@ public class AuthController {
     public ResponseEntity<AuthResponse> signin(@RequestBody LoginRequest loginRequest) {
         String username = loginRequest.getemail();
         String password = loginRequest.getPassword();
+
+        if ( isBlank(username)|| isBlank(password) ) {
+            AuthResponse authResponse = new AuthResponse();
+            authResponse.setMessage("Please enter all mandatory fields");
+            authResponse.setStatus(false);
+            return new ResponseEntity<AuthResponse>(authResponse, HttpStatus.OK);
+        }
 
         System.out.println(username+"-------"+password);
 

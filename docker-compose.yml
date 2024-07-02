@@ -4,7 +4,7 @@ services:
   mongodb:
     image: mongo:6.0
     restart: always
-    container_name: mongodb
+#    container_name: mongodb
     ports:
       - "27017:27017"
     volumes:
@@ -13,7 +13,7 @@ services:
   zipkin:
     image: openzipkin/zipkin
     restart: always
-    container_name: zipkin
+#    container_name: zipkin
     ports:
       - "9411:9411"
 
@@ -21,7 +21,7 @@ services:
     build:
       context: ./EurekaServerConfiguration
       dockerfile: Dockerfile
-    container_name: eureka-server
+#    container_name: eureka-server
     ports:
       - "8085:8085"
     environment:
@@ -31,7 +31,7 @@ services:
     build:
       context: ./UserService
       dockerfile: Dockerfile
-    container_name: user-service
+#    container_name: user-service
     ports:
       - "8081:8081"
     environment:
@@ -48,7 +48,7 @@ services:
     build:
       context: ./CustomerService
       dockerfile: Dockerfile
-    container_name: customer-service
+#    container_name: customer-service
     ports:
       - "8082:8082"
     environment:
@@ -65,7 +65,7 @@ services:
     build:
       context: ./InvoiceService
       dockerfile: Dockerfile
-    container_name: invoice-service
+#    container_name: invoice-service
     ports:
       - "8083:8083"
     environment:
@@ -82,7 +82,7 @@ services:
     build:
       context: ./APIGateWay
       dockerfile: Dockerfile
-    container_name: api-gateway
+#    container_name: api-gateway
     ports:
       - "8090:8090"
     environment:

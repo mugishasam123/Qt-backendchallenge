@@ -5,10 +5,10 @@ FROM openjdk:17-jdk-slim
 WORKDIR /app
 
 # Copy the JAR file into the container
-COPY build/libs/*.jar task-service.jar
+COPY build/libs/*.jar customer-service.jar
 
 # Expose the port the application runs on
 EXPOSE 8082
 
 # Set the entry point to run the application
-ENTRYPOINT ["java", "-jar", "task-service.jar"]
+ENTRYPOINT ["java", "-jar", "customer-service.jar"]
